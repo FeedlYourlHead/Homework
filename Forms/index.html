@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms</title>
+</head>
+<style>
+    form {
+
+        background-color: rgb(53, 106, 160);
+    }
+
+    ul {
+        list-style: none;
+        line-height: 40px;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: auto auto;
+        /* border: 1px solid white; */
+        background-color: rgb(53, 106, 160);
+        color: white;
+    }
+
+    .Names {
+        text-align: right;
+    }
+    #forms {
+        padding-left: 13px;
+    }
+    
+        
+
+
+    fieldset {
+        color: white;
+        background-color: rgb(53, 106, 160);
+        padding: 10px 10px 10px 10px;
+    }
+
+    legend {
+        background-color: rgb(53, 106, 160);
+    }
+</style>
+
+<body>
+    <form>
+        <fieldset>
+            <legend>Registration Details</legend>
+            <div class="container">
+                <div class="Names">
+                    <ul id="Names">
+                        <li>University :</li>
+                        <li>Institute :</li>
+                        <li>Branch :</li>
+                        <li>Degree :</li>
+                        <li>Avarage CPI :</li>
+                        <li>Expirience :</li>
+                        <li>Your Website Or Blog :</li>
+                    </ul>
+                </div>
+                <!--  -->
+                <div>
+                    <ul id="forms">
+                        <li><input type="text"></li>
+                        <li><input type="text"></li>
+                        <li>
+                            <label for="Branch"></label>
+                            <select name="Branch" id="Branch">
+                                <option value="select">--select--</option>
+                                <option value="lorem">Lorem.</option>
+                                <option value="lorem">Commodi.</option>
+                                <option value="lorem">Accusantium!</option>
+                                <option value="lorem">Distinctio!</option>
+                            </select>
+                        <li>
+                            <label for="Degree"></label>
+                            <select name="Degree" id="Degree">
+                                <option value="select">--select--</option>
+                                <option value="lorem">Lorem.</option>
+                                <option value="lorem">Commodi.</option>
+                                <option value="lorem">Accusantium!</option>
+                                <option value="lorem">Distinctio!</option>
+                            </select>
+                            <input type="radio" name="pursuing" id="pursuing">Pursuing
+                            <input type="radio" name="completed" id="completed">Completed
+                        </li>
+                        <li><input type="number" id="cpi" name="cpi" min="0" max="5" step="1"> Upto <input type="number" id="Semester" name="Semester" min="0" max="5" step="1">Th Semester</li>
+                        <li><input type="number" id="Years" name="Years" min="0" max="100" step="1"> Years </li>
+                        <li><input type="url" id="homepage" name="homepage" value="http://"></li>
+                    </ul>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</body>
+
+</html>

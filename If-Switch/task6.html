@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 6</title>
+    <script>
+        let quantityMoney = parseInt(prompt("Введите количество USD"));
+        let chooseCurrency = prompt("Введите валюту, в которую вы хотите конвертировать USD");
+        let output = parseFloat()
+        switch (chooseCurrency) {
+            case "EUR":
+                output = quantityMoney * 0.89;
+                break;
+            case "UAN":
+                output = quantityMoney * 41.44;
+                break;
+            case "AZN":
+                output = quantityMoney * 1.7;
+                break;
+            default:
+                alert("Введите корректную валюту!");
+        }
+        alert(quantityMoney + " USD в переводе на " + chooseCurrency + " составляет " + output + " " + chooseCurrency)
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

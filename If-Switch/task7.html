@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 7</title>
+    <script>
+        let sumBuying = prompt("Введите сумму покупки");
+        let discount
+        if (parseInt(sumBuying) >= 200 && parseInt(sumBuying) < 300) {
+            discount = 0.03;
+        } else {
+            if (parseInt(sumBuying) >= 300 && parseInt(sumBuying) < 500) {
+                discount = 0.05;
+            } else {
+                if (parseInt(sumBuying) >= 500) {
+                    discount = 0.07;
+                } else {
+                    discount = 0
+                }
+            }
+        }
+        alert("Ваша сумма к покупке, с учетом скидки составляет: " + (sumBuying - sumBuying * discount));
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

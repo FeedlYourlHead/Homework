@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 4</title>
+    <script>
+        let year = parseInt(prompt("Введите год"));
+        let message;
+        if (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)) {
+            message = "Данный год является високосным!";
+        } else {
+            message = "Данный год не является високосным!";
+        }
+        alert(message);
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

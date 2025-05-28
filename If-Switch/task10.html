@@ -50,9 +50,9 @@
                 }
         }
         if (dayUserDate == maxDaysInMonth) {
-            dayNewDate = 01;
+            dayNewDate = 1;
             if (monthUserDate == "12") {
-                monthNewDate = 01;
+                monthNewDate = 1;
                 yearNewDate = yearUserDate + 1;
 
             } else {
@@ -64,14 +64,16 @@
             monthNewDate = parseInt(monthUserDate);
             yearNewDate = parseInt(yearUserDate);
         }
-
-        console.log(maxDaysInMonth);
-
-
-
+// Форматирование чисел типа 1 в 01, для корректного отображения даты
+        const formattedDay = dayNewDate.toString().padStart(2, "0");
+        const formattedMonth = monthNewDate.toString().padStart(2, "0");
 
 
-        alert("Следующая дата после вашей: " + dayNewDate + "." + monthNewDate + "." + yearNewDate);
+
+
+
+
+        alert("Следующая дата после вашей: " + formattedDay + "." + formattedMonth + "." + yearNewDate);
     </script>
 </head>
 

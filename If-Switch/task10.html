@@ -1,15 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width|| initial-scale=1.0">
     <title>Task 10</title>
     <script>
-        let userDate = prompt("Введите дату в формате: 00.00.0000")
+        let dayUserDate = prompt("Введите день даты в формате 00");
+        let monthUserDate = prompt("Введите месяц даты в формате 00");
+        let yearUserDate = prompt("Введите год даты в формате 0000");
+        let leapYear = Boolean;
+        let dayNewDate;
+        let monthNewDate;
+        let yearNewDate;
+        let maxDaysInMonth;
+// Проверка високосный ли год
+        if (yearUserDate % 400 == 0 || (yearUserDate % 4 == 0 && yearUserDate % 100 != 0)) {
+            leapYear = true;
+        } else {
+            leapYear = false;
+        }
 
+// Определение, сколько дней в месяце
+        switch (monthUserDate) {
+            case "01":
+            case "03":
+            case "05":
+            case "07":
+            case "08":
+            case "10":
+            case "12":
+                maxDaysInMonth = 31;
+                break;
+
+            case "04":
+            case "06":
+            case "09":
+            case "11":
+                maxDaysInMonth = 30;
+
+                break
+            case "02":
+                if (leapYear == true) {
+                    maxDaysInMonth = 29;
+                    break;
+                } else {
+                    maxDaysInMonth = 28;
+                    break;
+                }
+        }
+        if (dayUserDate == maxDaysInMonth) {
+            dayNewDate = 01;
+            if (monthUserDate == "12") {
+                monthNewDate = 01;
+                yearNewDate = yearUserDate + 1;
+
+            } else {
+                monthNewDate = monthUserDate + 1;
+                yearNewDate = yearUserDate
+            }
+        } else {
+            dayNewDate = parseInt(dayUserDate) + 1;
+            monthNewDate = parseInt(monthUserDate);
+            yearNewDate = parseInt(yearUserDate);
+        }
+
+        console.log(maxDaysInMonth);
+
+
+
+
+
+        alert("Следующая дата после вашей: " + dayNewDate + "." + monthNewDate + "." + yearNewDate);
     </script>
 </head>
+
 <body>
-    
+
 </body>
+
 </html>

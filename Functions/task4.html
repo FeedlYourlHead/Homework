@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 4</title>
+    <script>
+        let a = prompt("Введите первую сторону прямоугольника");
+        let b = prompt("Введите вторую сторону прямоугольника(нажмите 'отмена', если хотите получить площадь квадрата)");
+        console.log(area(a,b));
+
+        function area(a, b) {
+            let result;
+            // if (b === null) return (a ** 2);
+            (b == null) ? result = (a ** 2) : result = (a * b);
+            return result;
+        }
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

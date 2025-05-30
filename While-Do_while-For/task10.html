@@ -1,14 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task 5</title>
+    <title>Task 10</title>
     <script>
+        let low = 0;
+        let high = 100;
+        alert("Загадайте число от 0 до 100");
+
+        while (low <= high) {
+            const mid = Math.floor((low + high) / 2);
+
+            const answer = prompt(
+                `Ваше число > ${mid}, < ${mid} или == ${mid}?\n` +
+                `(Введите '>', '<' или '=')`
+            );
+
+            if (answer === '=') {
+                alert(`Ваше число: ${mid}.`);
+                break;
+            } else if (answer === '>') {
+                low = mid + 1;
+            } else if (answer === '<') {
+                high = mid - 1;
+            } else {
+                alert("Некорректный ввод.");
+                steps--; 
+            }
+            if (low > high) {
+                alert("Некорректный ввод!!");
+                break;
+            }
+        }
+
+
 
     </script>
 </head>
+
 <body>
-    
+
 </body>
+
 </html>

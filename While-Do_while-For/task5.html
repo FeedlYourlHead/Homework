@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 5</title>
+    <script>
+        let counterEven = 0;
+        let counterOdd = 0;
+        let counterPositive = 0;
+        let counterZero = 0;
+        let counterNegative = 0;
+
+        for (let i = 0; i < 10; i++) {
+            console.log("Итерация №" + (i+1));
+            let number = parseInt(prompt("Введите любое целое число:"));
+            console.log("Число: " + number)
+            // Проверка числа на четность
+            if (number & 1 == true) {
+                console.log("Число нечетное!")
+                counterOdd++;
+            } else {
+                console.log("Число четное!")
+                counterEven++;
+            }
+            if (number == 0) {
+                console.log("Число ноль")
+                counterZero++;
+            } else if (number > 0) {
+                console.log("Число положительное")
+                counterPositive++;
+            } else {
+                console.log("Число отрицательное")
+                counterNegative++
+            }
+            console.log("----------------------------------")
+
+
+        }
+        alert("Статистика: \nЧетныe числа - " + counterEven + "\nНечетные числа - " + counterOdd + "\nПоложительные числа - " + counterPositive + "\nНули - " + counterZero + "\nОтрицательные числа - " + counterNegative)
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

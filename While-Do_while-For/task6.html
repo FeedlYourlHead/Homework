@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 6</title>
+    <script>
+        conditon = confirm("Вы хотите воспользоваться калькулятором?");
+        while (conditon == true) {
+            let x = parseInt(prompt("Введите первое число"));
+            let y = parseInt(prompt("Введите второе число"));
+            let operator = prompt("Введите знак");
+            let result
+            switch (operator) {
+                case "+":
+                    result = x + y;
+                    break;
+                case "-":
+                    result = x - y;
+                    break;
+                case "*":
+                    result = x * y;
+                    break;
+                case "/":
+                    result = x / y;
+                    break;
+            }
+            alert("Результат: " + result);
+            conditon = confirm("Вы хотите продолжить?");
+        }
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

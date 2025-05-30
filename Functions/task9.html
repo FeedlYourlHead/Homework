@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task9</title>
+    <script>
+        userInput = prompt("Введите количество секунд");
+        alert(secondsInFormat(userInput));
+        function secondsInFormat(userInput) {
+            hour = parseInt(userInput / 3600);
+            minutes = parseInt((userInput % 3600) / 60);
+            second = parseInt((userInput % 3600) % 60);
+            return timeInFormat(hour, minutes, second);
+        }
+
+
+
+
+        function timeInFormat(hour, minutes, seconds) {
+            if (hour == null) { hour = 0; }
+            if (minutes == null) { minutes = 0; }
+            if (seconds == null) { seconds = 0; }
+            result = `${hour.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+            return result;
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

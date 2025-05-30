@@ -1,31 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task 8</title>
     <script>
+        let condition = confirm("Хотите воспользоваться программой?");
+        while (condition == true) {
+            for (let i = 0; i < 7; i++) {
 
-        switch day {
-            case "0":
-                dayName = "Понедельник";
-            case "1":
-                dayName = "Вторник";
-            case "2":
-                dayName = "Среда";
-            case "3":
-                dayName = "Четверг";
-            case "4":
-                dayName = "Пятница";
-            case "5":
-                dayName = "Суббота";
-            case "6":
-                dayName = "Воскресенье";
+                switch (i) {
+                    case 0:
+                        dayName = "Понедельник";
+                        condition = confirm(dayName + ". Хотите увидеть следующий день?");
+                        if (condition == true) {
+                            break
+                        } else {
+                            i = 10;
+                            break
+                        }
+                    case 1:
+                        dayName = "Вторник";
+                        condition = confirm(dayName + ". Хотите увидеть следующий день?");
+                        if (condition == true) {
+                            break
+                        } else {
+                            i = 10;
+                            break
+                        }
+                    case 2:
+                        dayName = "Среда";
+                        condition = confirm(dayName + ". Хотите увидеть следующий день?");
+                        if (condition == true) {
+                            break
+                        } else {
+                            i = 10;
+                            break
+                        }
+                    case 3:
+                        dayName = "Четверг";
+                        condition = confirm(dayName + ". Хотите увидеть следующий день?");
+                        if (condition == true) {
+                            break
+                        } else {
+                            i = 10;
+                            break
+                        }
+                    case 4:
+                        dayName = "Пятница";
+                        condition = confirm(dayName + ". Хотите увидеть следующий день?");
+                        if (condition == true) {
+                            break
+                        } else {
+                            i = 10;
+                            break
+                        }
+                    case 5:
+                        dayName = "Суббота";
+                        condition = confirm(dayName + ". Хотите увидеть следующий день?");
+                        if (condition == true) {
+                            break
+                        } else {
+                            i = 10;
+                            break
+                        }
+                    case 6:
+                        dayName = "Воскресенье";
+                        condition = confirm(dayName + ". Хотите увидеть следующий день?");
+                        if (condition == true) {
+                            break
+                        } else {
+                            i = 10;
+                            break
+                        }
+                    default:
+                        break
+                }
+                if (i == 7) {
+                    i = 0;
+                    continue
+                } else continue;
+            }
         }
 
     </script>
 </head>
+
 <body>
-    
+
 </body>
+
 </html>

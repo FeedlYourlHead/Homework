@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task1</title>
+    <script>
+        let firstHour = prompt("Введите кол-во часов первой даты");
+        let firstMinutes = prompt("Введите кол-во минут первой даты");
+        let firstSeconds = prompt("Введите кол-во секунд первой даты");
+        let secondHour = prompt("Введите кол-во часов второй даты");
+        let secondMinutes = prompt("Введите кол-во минут второй даты");
+        let secondSeconds = prompt("Введите кол-во секунд второй даты");
+        let differenceInSeconds = timeToSeconds(firstHour,firstMinutes,firstSeconds) - timeToSeconds(secondHour,secondMinutes,secondSeconds);
+        alert(`\nПервая дата: ${timeInFormat(firstHour, firstMinutes, firstSeconds)}\n
+        Вторая дата: ${timeInFormat(secondHour, secondMinutes, secondSeconds)}\n
+        Первая дата в секундах: ${timeToSeconds(firstHour, firstMinutes, firstSeconds)}\n
+        Вторая дата в секундах: ${timeToSeconds(secondHour,secondMinutes,secondSeconds)}\n
+        Разница дат, в секундах: ${differenceInSeconds}\n
+        Разница дат, в формате: ${secondsInFormat(differenceInSeconds)} `
+        )
+
+
+
+        function timeToSeconds(hour, minutes, seconds) {
+            let result = parseInt(hour) * 3600 + parseInt(minutes) * 60 + parseInt(seconds);
+            return result;
+        }
+        function secondsInFormat(userInput) {
+            hour = parseInt(userInput / 3600);
+            minutes = parseInt((userInput % 3600) / 60);
+            second = parseInt((userInput % 3600) % 60);
+            return timeInFormat(hour, minutes, second);
+        }
+        function timeInFormat(hour, minutes, seconds) {
+            if (hour == null) { hour = 0; }
+            if (minutes == null) { minutes = 0; }
+            if (seconds == null) { seconds = 0; }
+            result = `${hour.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+            return result;
+        }
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

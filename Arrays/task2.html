@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2</title>
+    <script>
+        window.onload = function () {
+            makeArr();
+            let x = makeArr();
+            let y = makeArr();
+            display("firstArray", x);
+            display("secondArray", y);
+            display("demo1", combineUniqueArray(x, y))
+            display("demo2", concatArr(x, y));
+            display("demo3", thirdTask(x, y));
+            console.log(combineUniqueArray(x, y))
+
+
+            function concatArr(arr1, arr2) {
+                result = [];
+                for (let i = 0; i < arr1.length; i++) {
+
+                    for (let j = 0; j < arr2.length; j++) {
+                        if (arr1[i] == arr2[j]) {
+                            result.push(arr2[j]);
+                        } else {
+                            continue
+                        }
+                    }
+                }
+                return result;
+            }
+
+            function makeArr() {
+                let result = [];
+                for (let i = 0; i < 5; i++) {
+                    result.push(Math.round(Math.random() * 100));
+                }
+                return result;
+            }
+
+            function display(demo, inputFunction) {
+                document.getElementById(demo).innerHTML = inputFunction;
+
+            }
+            function combineUniqueArray(arr1, arr2) {
+                let combinedArray = arr1.concat(arr2);
+                let uniqueArray = [];
+
+                for (let i = 0; i < combinedArray.length; i++) {
+                    const element = combinedArray[i];
+                    let isDuplicate = false;
+
+                    for (let j = 0; j < uniqueArray.length; j++) {
+                        if (uniqueArray[j] === element) {
+                            isDuplicate = true;
+                            break;
+
+                        }
+                    }
+                    if (!isDuplicate) {
+                        uniqueArray.push(element);
+                    }
+                }
+                return uniqueArray;
+            }
+            function thirdTask(arr1, arr2) {
+                const result = [];
+
+                for (let i = 0; i < arr1.length; i++) {
+                    let found = false;
+
+                    for (let j = 0; j < arr2.length; j++) {
+                        if (arr1[i] === arr2[j]) {
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    if (!found) {
+                        result.push(arr1[i]);
+                    }
+                }
+
+                return result;
+
+            }
+
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Задание 2</h1>
+    <h2>Первый случайный массив</h2>
+    <p id="firstArray"></p>
+    <h2>Второй случайный массив</h2>
+    <p id="secondArray"></p>
+    <h2>Task 1</h2>
+    <p>Функция принимает 2 массива и возвращает новый массив, в котором собраны все элементы из двух массивов без
+        повторений.</p>
+    <p id="demo1">asdf</p>
+    <h2>Task 2</h2>
+    <p>Функция принимает 2 массива и возвращает новый массив,в котором собраны общие элементы (то есть элементы,которые
+        встречаются и в первом и во втором массивах) без повторений.</p>
+    <p id="demo2">dsfk</p>
+    <h2>Task 3</h2>
+    <p>Функция принимает 2 массива и возвращает новый массив, в котором собраны все элементы из первого массива,
+        которых нет во втором массиве. </p>
+    <p id="demo3">fsdkfj</p>
+</body>
+
+</html>

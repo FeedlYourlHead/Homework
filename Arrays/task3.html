@@ -6,40 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task 3</title>
     <script>
-        window.onload = function () {
+        document.write("<h2>Task 1</h2>");
+        nameFruit = prompt("Введите название искомого фрукта");
+        fruits = [
+            "яблоко", "банан", "апельсин", "груша", "виноград",
+            "киви", "манго", "ананас", "арбуз", "персик",
+            "слива", "вишня", "клубника", "голубика", "малина",
+            "ежевика", "лимон", "лайм", "гранат", "абрикос",
+            "инжир", "авокадо", "кокос", "дыня", "нектарин",
+            "маракуйя", "драконий фрукт", "гуава", "хурма", "личи"
+        ].sort();
 
-            fruits = [
-                "яблоко", "банан", "апельсин", "груша", "виноград",
-                "киви", "манго", "ананас", "арбуз", "персик",
-                "слива", "вишня", "клубника", "голубика", "малина",
-                "ежевика", "лимон", "лайм", "гранат", "абрикос",
-                "инжир", "авокадо", "кокос", "дыня", "нектарин",
-                "маракуйя", "драконий фрукт", "гуава", "хурма", "личи"
-            ].sort();
+        display(listFruits(fruits));
+        document.write("<h2>Task 2</h2>");
+        document.write(`Индекс искомого элемента под названием "${nameFruit}": ${searchFruitByName(nameFruit)}`);
 
-            display("task1", listFruits(fruits));
+        function display(inputFunction) {
+            document.innerHTML = inputFunction;
+        }
 
-            function display(task, inputFunction) {
-                document.getElementById(task).innerHTML = inputFunction;
+        function listFruits(array) {
+            document.write("<ul>")
+            for (let i = 0; i < array.length; i++) {
+                document.write(`<li>${fruits[i]}</li>`);
             }
-
-            function listFruits(array) {
-                document.write("<ul>")
-                for (let i = 0; i < array.length; i++) {
-                    document.write(`<li>${fruits[i]}</li>`)
-                }
-                document.write("</ul>")
-
-            }
+            document.write("</ul>");
 
         }
+        function searchFruitByName(nameFruit) {
+            return fruits.indexOf(nameFruit.toLowerCase());
+        }
+
     </script>
 </head>
 
 <body>
-    <h2>Task 1</h2>
-    <p id="task1">fsdfsd</p>
-    <p id="task2">fsdfa</p>
+
 </body>
 
 </html>

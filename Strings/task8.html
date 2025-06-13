@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 8</title>
+    <script>
+        function maxWord(string) {
+            stringArray = string.split(" ");
+            let resultLength = [0, "lorem"];
+            for (let i = 0; i < stringArray.length; i++) {
+                if (stringArray[i].length > resultLength[0]) {
+                    resultLength[0] = stringArray[i].length;
+                    resultLength[1] = stringArray[i];
+                }
+            }
+            return resultLength[0];
+        }
+        console.log(maxWord(prompt("Введите вашу строку(ответ в консоли)")));
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

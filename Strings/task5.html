@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 5</title>
+    <script>
+        function truncate(string, value) {
+            if (string.length > value) {
+                return string.slice(0, value - 1) + "...";
+            } else {
+                return string;
+            }
+        }
+        console.log(truncate(prompt("Введите вашу строку(результат в консоли)"), parseInt(prompt("Введите максимальную длину строки"))));
+        // Функция учитывает пробелы и знаки препинания как символы, поэтому, когда когда вводишь "Hello, world", она возвращает "Hello, ...", а не "Hello..." как в задании.
+        // В задании не говорится, что требуется не учитывать пробелы и знаки препинания как символы, поэтому оставил как есть.
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

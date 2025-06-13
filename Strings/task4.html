@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 4</title>
+</head>
+
+<body>
+    <script>
+        console.log(isSpam("Только сегодня, распродажа!!!!"));
+        console.log(isSpam("В этом предложении нет спама"));
+        // console.log(isSpam(prompt("Введите ваше предложение")));
+        document.getElementById("demo").innerHTML = isSpam(prompt("Введите ваше предложение"));
+        function isSpam(text) {
+            const spamWords = [
+                "100% бесплатно",
+                "увеличение продаж",
+                "только сегодня",
+                "не удаляйте",
+                "xxx",
+                "ххх"
+            ];
+
+            let regexString = "";
+            for (let i = 0; i < spamWords.length; i++) {
+                regexString += spamWords[i];
+
+                if (i < spamWords.length - 1) {
+                    regexString += "|";
+                }
+            }
+
+            const regex = new RegExp(regexString, "i");
+
+            if (regex.test(text)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    </script>
+<p id="demo"></p>
+</body>
+
+</html>

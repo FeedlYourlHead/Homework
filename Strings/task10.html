@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 10</title>
+    <script>
+        let string = prompt("Введите вашу строку");
+        let symbol = prompt("Введите ваш символ");
+        let array = indexString(string, symbol);
+        for (let i = 0; i < array.length; i++) {
+            console.log(array[i]);
+        }
+        console.log(`Символ ${symbol} встречается в строке ${array.length} раз`)
+        function indexString(string, symbol) {
+            let result = [];
+            for (let i = 0; i < string.length; i++) {
+                if (string[i] == symbol) {
+                    result.push(i);
+                }
+            }
+            return result;
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

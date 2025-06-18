@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task 12</title>
+    <script>
+        const rectangle = {
+            leftTopX: 2,
+            leftTopY: 3,
+            rightButtomX: 6,
+            rightButtomY: 1,
+
+            inSquare: function (x, y) {
+                if (x >= this.leftTopX &&
+                    x <= this.rightButtomX &&
+                    y >= this.rightButtomY &&
+                    y <= this.leftTopY) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+        }
+        console.log(rectangle.inSquare(2, 2))
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

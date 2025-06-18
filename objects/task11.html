@@ -4,23 +4,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>task 2</title>
+    <title>task 11</title>
     <script>
         const rectangle = {
             leftTopX: 2,
             leftTopY: 3,
             rightButtomX: 6,
             rightButtomY: 1,
-            inSquare: function (x,y) {
-                if (leftTopX > x >rightButtomX && leftTopY > y >rightButtomY ) {
-                    return true;
-                } else {
-                    return false;
-                }
+            width: function () {
+                let side1 = Math.abs(this.rightButtomX - this.leftTopX);
+                let side2 = Math.abs(this.leftTopY - this.rightButtomY);
+                //     if (side1 < side2) {
+                //         return side1;
+                //     } else {
+                //         return side2;}
+                // }
+                return (2 * side1 + 2 * side2);
+
             }
-            console.log(inSquare(2,2))
-            
+
         }
+        function moveX(rectangle, move) {
+            rectangle.leftTopX += move;
+            rectangle.rightButtomX += move;
+        }
+        function moveY(rectangle, move) {
+            rectangle.leftTopY += move;
+            rectangle.rightButtomY += move;
+        }
+        function moveXY(rectangle, x, y) {
+            moveX(rectangle, x);
+            moveY(rectangle, y);
+        }
+        console.log(`Старые координаты точки x: ${rectangle.leftTopX}`);
+        console.log(`Старые координаты точки x: ${rectangle.rightButtomX}`);
+        console.log(`Старые координаты точки y: ${rectangle.leftTopY}`);
+        console.log(`Старые координаты точки y: ${rectangle.rightButtomY}`);
+        moveXY(rectangle, 10, 10);
+        console.log("");
+        console.log(`Новые координаты точки x: ${rectangle.leftTopX}`);
+        console.log(`Новые координаты точки x: ${rectangle.rightButtomX}`);
+        console.log(`Новые координаты точки y: ${rectangle.leftTopY}`);
+        console.log(`Новые координаты точки y: ${rectangle.rightButtomY}`);
 
     </script>
 </head>

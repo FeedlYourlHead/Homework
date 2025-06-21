@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3</title>
+    <script>
+        employeeArray = [];
+        class Employee {
+            constructor(firstName, lastName, age, position) {
+                // Понимаю, что использовать случайное число для ID некорректно, так как они могут повторяться, просто хотел сделать как нибудь необычно.
+                this.id = Math.floor(Math.random() * 10000000);
+                this.firstName = firstName;
+                this.lastName = lastName;
+                this.age = age;
+                this.position = position;
+                employeeArray.push(this);
+                console.log(employeeArray);
+            }
+            addEmployee(firstName, lastName, age, position) {
+                let result = new Employee(firstName, lastName, age, position)
+            }
+        }
+
+
+
+
+
+
+
+
+
+        class EmpTable extends Employee {
+            constructor(firstName, lastName, age, position) {
+                super(firstName, lastName, age, position)
+
+            }
+
+
+            getHtml() {
+                let result = "<table>";
+                result += "<caption>Таблица работников</caption>";
+                result += `<thead>
+                    <tr>
+                    <th>ID</th>
+                    <th>Имя</th>
+                    <th>Фамилия</th>
+                    <th>Возраст</th>
+                    <th>Должность</th>
+                    </tr>
+                    </thead>`;
+                for (let i = 0; i < employeeArray.length; i++) {
+
+                    result += `<tr>`;
+                    result += `<td>${employeeArray[i].id}</td>`;
+                    result += `<td>${employeeArray[i].firstName}</td>`;
+                    result += `<td>${employeeArray[i].lastName}</td>`;
+                    result += `<td>${employeeArray[i].age}</td>`;
+                    result += `<td>${employeeArray[i].position}</td>`;
+                    result += "</tr>";
+
+                }
+
+
+
+                result += "</table>";
+                document.write(result)
+            }
+        }
+        // Все данные придумала нейросеть, код писал сам
+        let table = new EmpTable("Олег", "Олегов", 34, "Охранник"); // Кроме этого)
+        table.addEmployee("Иван", "Иванов", 45, "Управляющий отделением");
+        table.addEmployee("Светлана", "Петрова", 32, "Старший менеджер по кредитованию");
+        table.addEmployee("Алексей", "Сидоров", 28, "Финансовый аналитик");
+        table.addEmployee("Мария", "Козлова", 51, "Начальник отдела кассовых операций");
+        table.addEmployee("Дмитрий", "Никитин", 24, "Специалист по работе с клиентами");
+        table.addEmployee("Анна", "Федорова", 39, "Руководитель отдела продаж");
+        table.addEmployee("Павел", "Морозов", 42, "Директор по безопасности");
+        table.addEmployee("Екатерина", "Жукова", 29, "Менеджер по инвестициям");
+        table.addEmployee("Михаил", "Лебедев", 36, "Начальник IT-отдела");
+        table.addEmployee("Ольга", "Соколова", 26, "Операционист");
+        table.addEmployee("Артем", "Новиков", 33, "Риск-менеджер");
+        table.addEmployee("Виктория", "Павлова", 47, "Главный бухгалтер");
+        table.addEmployee("Сергей", "Волков", 30, "Специалист по валютным операциям");
+        table.addEmployee("Ирина", "Кузнецова", 23, "Стажер");
+        table.addEmployee("Андрей", "Белов", 58, "Директор департамента корпоративного бизнеса");
+        table.getHtml();
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

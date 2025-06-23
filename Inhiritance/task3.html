@@ -19,7 +19,7 @@
                 console.log(employeeArray);
             }
             addEmployee(firstName, lastName, age, position) {
-                let result = new Employee(firstName, lastName, age, position)
+                let result = new Employee(firstName, lastName, age, position);
             }
         }
 
@@ -33,7 +33,7 @@
 
         class EmpTable extends Employee {
             constructor(firstName, lastName, age, position) {
-                super(firstName, lastName, age, position)
+                super(firstName, lastName, age, position);
 
             }
 
@@ -65,26 +65,26 @@
 
 
                 result += "</table>";
-                document.write(result)
+                document.write(result);
             }
         }
         // Все данные придумала нейросеть, код писал сам
         let table = new EmpTable("Олег", "Олегов", 34, "Охранник"); // Кроме этого)
-        table.addEmployee("Иван", "Иванов", 45, "Управляющий отделением")
-        table.addEmployee("Светлана", "Петрова", 32, "Старший менеджер по кредитованию")
-        table.addEmployee("Алексей", "Сидоров", 28, "Финансовый аналитик")
-        table.addEmployee("Мария", "Козлова", 51, "Начальник отдела кассовых операций")
-        table.addEmployee("Дмитрий", "Никитин", 24, "Специалист по работе с клиентами")
-        table.addEmployee("Анна", "Федорова", 39, "Руководитель отдела продаж")
-        table.addEmployee("Павел", "Морозов", 42, "Директор по безопасности")
-        table.addEmployee("Екатерина", "Жукова", 29, "Менеджер по инвестициям")
-        table.addEmployee("Михаил", "Лебедев", 36, "Начальник IT-отдела")
-        table.addEmployee("Ольга", "Соколова", 26, "Операционист")
-        table.addEmployee("Артем", "Новиков", 33, "Риск-менеджер")
-        table.addEmployee("Виктория", "Павлова", 47, "Главный бухгалтер")
-        table.addEmployee("Сергей", "Волков", 30, "Специалист по валютным операциям")
-        table.addEmployee("Ирина", "Кузнецова", 23, "Стажер")
-        table.addEmployee("Андрей", "Белов", 58, "Директор департамента корпоративного бизнеса")
+        table.addEmployee("Иван", "Иванов", 45, "Управляющий отделением");
+        table.addEmployee("Светлана", "Петрова", 32, "Старший менеджер по кредитованию");
+        table.addEmployee("Алексей", "Сидоров", 28, "Финансовый аналитик");
+        table.addEmployee("Мария", "Козлова", 51, "Начальник отдела кассовых операций");
+        table.addEmployee("Дмитрий", "Никитин", 24, "Специалист по работе с клиентами");
+        table.addEmployee("Анна", "Федорова", 39, "Руководитель отдела продаж");
+        table.addEmployee("Павел", "Морозов", 42, "Директор по безопасности");
+        table.addEmployee("Екатерина", "Жукова", 29, "Менеджер по инвестициям");
+        table.addEmployee("Михаил", "Лебедев", 36, "Начальник IT-отдела");
+        table.addEmployee("Ольга", "Соколова", 26, "Операционист");
+        table.addEmployee("Артем", "Новиков", 33, "Риск-менеджер");
+        table.addEmployee("Виктория", "Павлова", 47, "Главный бухгалтер");
+        table.addEmployee("Сергей", "Волков", 30, "Специалист по валютным операциям");
+        table.addEmployee("Ирина", "Кузнецова", 23, "Стажер");
+        table.addEmployee("Андрей", "Белов", 58, "Директор департамента корпоративного бизнеса");
         table.getHtml();
     </script>
 </head>

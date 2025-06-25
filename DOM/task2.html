@@ -7,34 +7,47 @@
     <title>task 2</title>
     <script>
         window.onload = () => {
-
+            console.log(document.querySelectorAll("li"))
+            liObjects = document.querySelectorAll("li");
+            liObjects.forEach((obj) => {
+                
+                obj.addEventListener("mouseenter", () => {
+                    
+                    console.log(obj.setAttribute('style', 'color:red'));
+                })
+                obj.addEventListener("mouseleave", () => {
+                    
+                    console.log(obj.setAttribute('style', 'color:black'));
+                })
+            })
         }
     </script>
 </head>
 
 <body>
     <ul>
-        <li>This PC
+        <li>This PC</li>
+        <ul>
+            <li>Local Disk(C:)</li>
             <ul>
-                <li>Local Disk(C:)</li>
-                <ul>
-                    <li>Program Files</li>
-                    <li>Users</li>
-                    <li>Windows</li>
-                </ul>
+                <li>Program Files</li>
+                <li>Users</li>
+                <li>Windows</li>
             </ul>
-            <ul>
-               <li>
+        </ul>
+        <ul>
+            <li>
                 Local Disk (D:)
-               </li> 
-                <ul>
-                    <li>New Folder 1</li>
-                    <li>New Folder 2</li>
-                    <li>New Folder 3</li>
-                </ul>
-                <li>Local Disk (E:)</li>
+            </li>
+            <ul>
+                <li>New Folder 1</li>
+                <li>New Folder 2</li>
+                <li>New Folder 3</li>
             </ul>
-        </li>
+        </ul>
+        <ul>
+            <li>Local Disk (E:)</li>
+        </ul>
     </ul>
 </body>
 

@@ -8,18 +8,25 @@
     <script>
         window.onload = () => {
             console.log(document.querySelectorAll("li"))
-            liObjects = document.querySelectorAll("li");
+            let liObjects = document.querySelectorAll("li");
+            let ulObjects = document.querySelectorAll("ul");
             liObjects.forEach((obj) => {
                 
                 obj.addEventListener("mouseenter", () => {
                     
-                    console.log(obj.setAttribute('style', 'color:red'));
+                    obj.setAttribute('style', 'font-weight:bold');
                 })
                 obj.addEventListener("mouseleave", () => {
                     
-                    console.log(obj.setAttribute('style', 'color:black'));
+                    obj.setAttribute('style', 'font-weight:normal');
                 })
             })
+            ulObjects.forEach((obj) => {
+                obj.addEventListener("click", () => {
+                    console.log(obj.childNodes);
+                })
+            }
+        )
         }
     </script>
 </head>

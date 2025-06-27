@@ -7,54 +7,45 @@
     <title>task 2</title>
     <script>
         window.onload = () => {
-            console.log(document.querySelectorAll("li"))
             let liObjects = document.querySelectorAll("li");
             let ulObjects = document.querySelectorAll("ul");
             liObjects.forEach((obj) => {
-                
+
                 obj.addEventListener("mouseenter", () => {
-                    
+
                     obj.setAttribute('style', 'font-weight:bold');
                 })
                 obj.addEventListener("mouseleave", () => {
-                    
+
                     obj.setAttribute('style', 'font-weight:normal');
                 })
-            })
-            ulObjects.forEach((obj) => {
                 obj.addEventListener("click", () => {
-                    console.log(obj.childNodes);
+                    let node = obj.nextElementSibling.nodeName
+                    if (obj.nextElementSibling.nodeName === "UL") {
+                        obj.nextElementSibling.style.display = obj.nextElementSibling.style.display === "none" ? "block" : "none";
+                    } 
                 })
-            }
-        )
+            })
         }
     </script>
 </head>
 
 <body>
+    <li>This PC</li>
     <ul>
-        <li>This PC</li>
+        <li>Local Disk(C:)</li>
         <ul>
-            <li>Local Disk(C:)</li>
-            <ul>
-                <li>Program Files</li>
-                <li>Users</li>
-                <li>Windows</li>
-            </ul>
+            <li>Program Files</li>
+            <li>Users</li>
+            <li>Windows</li>
         </ul>
+        <li>Local Disk (D:)</li>
         <ul>
-            <li>
-                Local Disk (D:)
-            </li>
-            <ul>
-                <li>New Folder 1</li>
-                <li>New Folder 2</li>
-                <li>New Folder 3</li>
-            </ul>
+            <li>New Folder 1</li>
+            <li>New Folder 2</li>
+            <li>New Folder 3</li>
         </ul>
-        <ul>
-            <li>Local Disk (E:)</li>
-        </ul>
+        <li>Local Disk (E:)</li>
     </ul>
 </body>
 

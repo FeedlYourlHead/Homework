@@ -21,9 +21,9 @@
                 })
                 obj.addEventListener("click", () => {
                     let node = obj.nextElementSibling.nodeName
-                    if (obj.nextElementSibling.nodeName === "UL") {
+                    if (node === "UL") {
                         obj.nextElementSibling.style.display = obj.nextElementSibling.style.display === "none" ? "block" : "none";
-                    } 
+                    }
                 })
             })
         }

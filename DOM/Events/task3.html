@@ -1,14 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>task 3</title>
+  <style>
+    #main-block div {
+      height: 30px;
+      width: 30px;
+      margin: 2px;
+      display: inline-block;
+
+
+    }
+  </style>
   <script>
 
+    window.onload = () => {
+      let divs = document.querySelectorAll("#main-block div");
+      divs.forEach((div) => {
+        div.style.backgroundColor = div.dataset.color;
+        div.addEventListener("click", () => {
+          let color = div.getAttribute("data-color");
+          document.querySelector("p").style.color = color;
+        })
+      })
+    }
   </script>
 </head>
+
 <body>
-  
+  <div id="main-block">
+    <div data-color="black"></div>
+    <div data-color="grey"></div>
+    <div data-color="rgb(146,0,28)"></div>
+    <div data-color="rgb(239,36,45)"></div>
+    <div data-color="rgb(255,255,0)"></div>
+    <div data-color="rgb(43,184,87)"></div>
+    <div data-color="rgb(0,170,234)"></div>
+    <div data-color="rgb(74,83,209)"></div>
+    <div data-color="rgb(171,84,172)"></div>
+    <div data-color="rgb(255,255,255)"></div>
+    <div data-color="rgb(215,215,215)"></div>
+    <div data-color="rgb(192,132,98)"></div>
+    <div data-color="rgb(255,198,208)"></div>
+    <div data-color="rgb(241,231,183)"></div>
+    <div data-color="rgb(188,233,37)"></div>
+    <div data-color="rgb(162,221,236)"></div>
+    <div data-color="rgb(123,155,196)"></div>
+    <div data-color="rgb(205,197,234)"></div>
+  </div>
+
+  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum ex ea eos, excepturi saepe officia, animi
+    incidunt quibusdam provident laudantium, explicabo debitis aspernatur perferendis facilis.
+    Animi iusto, cupiditate necessitatibus, obcaecati asperiores quae minima commodi a debitis mollitia et fugiat iure
+    doloremque? Sequi doloremque, in porro qui cumque corporis?
+    Perspiciatis, ducimus? Ullam, a fugiat voluptates eos magni excepturi vitae non similique accusantium minima
+    quisquam aspernatur? Reiciendis debitis nihil nulla quo nam minus non sint eos,
+    a doloremque ipsam, natus nemo. Eos dolorem facere temporibus quos ratione animi doloremque tenetur facilis minima
+    nulla quam, dolorum ducimus quaerat voluptatem culpa. Quibusdam exercitationem ratione beatae? Voluptatibus numquam
+    voluptatem qui minima ipsum dolorem iste illo saepe repellat nulla omnis mollitia, blanditiis voluptatum, soluta
+    officiis at ipsa consequuntur veritatis vel maiores sapiente. Nihil nobis illo non ab officia ad explicabo a laborum
+    necessitatibus at quidem, modi quo perspiciatis reprehenderit nesciunt doloribus assumenda. Debitis necessitatibus
+    velit quidem!</p>
+
 </body>
+
 </html>

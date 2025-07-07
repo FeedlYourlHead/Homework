@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = () => {
+            const name = sessionStorage.getItem("login");
+            console.log(sessionStorage.getItem("checked"));
+            let remember;
+            const check = sessionStorage.getItem("checked") ? (remember = "запомнил") : (remember = "не запомнил");
+            console.log(remember)
+            document.querySelector("p").innerText = ` «Привет, ${name}! Я тебя ${remember}`;
+        }
+    </script>
+</head>
+<body>
+    <p></p>
+</body>
+</html>

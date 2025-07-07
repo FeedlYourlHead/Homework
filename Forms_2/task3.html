@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3</title>
+    <style>
+        body {
+            background-color:rgb(251,242,233);
+        }
+
+    </style>
+    <script>
+        window.onload = () => {
+            document.querySelector("form").addEventListener("submit", save);
+            
+            function save(elem) {
+                elem.preventDefault();
+
+                let Firstname = document.getElementById("Firstname").value;
+                let Lastname = document.getElementById("Lastname").value;
+                let Birthday = document.getElementById("Birthday").value
+                let Gender = "";
+                document.getElementsByName("gender").forEach(e => {
+                    e.checked ? Gender = e.id : null;
+                })
+                let Country = document.getElementById("Country").value;
+                let city = document.getElementById("City").value;
+                let checkArray = [];
+                document.getElementsByTagName("label").checkboxes.childNodes.forEach((e) => {
+                    if (e.nodeName === "INPUT") {
+                    e.checked ? checkArray.push(e.id) : null;
+                    }
+                })
+                checkArray = checkArray.toString();
+
+
+
+                sessionStorage.setItem("Firstname", Firstname);
+                sessionStorage.setItem("Lastname", Lastname);
+                sessionStorage.setItem("Birthday", Birthday);
+                sessionStorage.setItem("Gender", Gender);
+                sessionStorage.setItem("Country", Country);
+                sessionStorage.setItem("City", city);
+                sessionStorage.setItem("Skills", checkArray);
+
+                window.location.assign("task3_table.html");
+            }
+
+
+
+        }
+    </script>
+</head>
+
+<body>
+    <form>
+
+        <div>
+            <label>
+                Firstname <br>
+                <input type="text" id="Firstname">
+            </label>
+        </div>
+
+        <div>
+            <label>
+                Lastname <br>
+                <input type="text" id="Lastname">
+            </label>
+        </div>
+        <div>
+            <label>
+                Birthday <br>
+                <input type="date" id="Birthday">
+            </label>
+        </div>
+        <div>
+            <label>
+                Gender:
+                <input type="radio" name="gender" id="Male"> Male
+                <input type="radio" name="gender" id="Female"> Female
+            </label>
+        </div>
+        <div>
+            <label>
+                Country:
+                <input type="text" list="options" id="Country">
+                <datalist id="options">
+                    <option value="Russia"></option>
+                    <option value="USA"></option>
+                    <option value="Canada"></option>
+                    <option value="Mexico"></option>
+                    <option value="Else"></option>
+                </datalist>
+            </label>
+        </div>
+        <div>
+            <label>
+                City:
+                <input type="text" list="options" id="City">
+                <datalist id="options">
+                    <option value="lorem"></option>
+                    <option value="USA"></option>
+                    <option value="Canada"></option>
+                    <option value="Mexico"></option>
+                    <option value="Else"></option>
+                </datalist>
+            </label>
+        </div>
+        <div>
+            <label id="checkboxes">
+                Skills:
+                <input type="checkbox" id="HTML"> HTML
+                <input type="checkbox" id="CSS"> CSS
+                <input type="checkbox" id="JS"> JS
+                <input type="checkbox" id="PHP"> PHP
+                <input type="checkbox" id="C++"> C++
+                <input type="checkbox" id="JAVA"> JAVA
+                <input type="checkbox" id="C#"> C#
+            </label>
+        </div>
+        <div>
+            <label>
+                <input type="submit" value="Save">
+            </label>
+        </div>
+
+
+
+
+
+    </form>
+</body>
+
+</html>

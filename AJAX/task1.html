@@ -59,6 +59,8 @@
                         'Content-Type': 'application/json',
                     }
                 }).done(res => {
+                    console.log(res.items);
+
                     fillFilmsBlock(res.items)
                 })
             }
@@ -72,11 +74,34 @@
                         `<img class="block-poster" src="${element.posterUrl}" width=120px height=200px> `,
                         `<button>Details</button>`).fadeIn(3000);
                     $("li").last().append("<div>");
-                    $("div").last().toggle()
+                    $("div").last().append(`<div>${element.nameRu}`)
+                    $("button").last().on("click", () => {
+                        console.log(element.nameRu) //Дописать код здесь!
+                        searchDirector(element.kinopoiskId)
+                    })
 
                 });
 
 
+            }
+            function searchDirector(id) {
+                $.ajax({
+                    url: `https://kinopoiskapiunofficial.tech/api/v1/staff?filmId=${id}`,
+                    method: "GET",
+                    headers: {
+                        'X-API-KEY': 'a9bc41a3-ad51-4841-9a01-310181a896b6',
+                        'Content-Type': 'application/json',
+                    }
+                }).done(res => {
+                    console.log(res.forEach(e => {
+                        // console.log(e);
+                        e.professionKey == "DIRECTOR" ? console.log(e) : null;
+                    }
+
+                    ));
+                }
+
+                )
             }
         })
     </script>

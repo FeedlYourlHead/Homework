@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .weather-widget {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(135deg, #909192, #5d5e5f);
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        #contentBlockToday {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            grid-template-rows: auto auto auto;
+            gap: 10px;
+            padding-bottom: 20px;
+            border: none !important;
+            grid-column-gap: 0;
+            text-align: left;
+        }
+
+        #contentBlockToday .location {
+            grid-column: 1 / 3;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        #contentBlockToday .datetime {
+            grid-column: 1 / 3;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        #contentBlockToday .wind,
+        #contentBlockToday .precip,
+        #contentBlockToday .pressure {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        #contentBlockToday .temperature {
+            grid-column: 2;
+            grid-row: 4 / 7;
+            font-size: 48px;
+            font-weight: bold;
+            text-align: right;
+            margin-top: -15px;
+        }
+
+        #contentBlockToday .icon {
+            grid-column: 2;
+            grid-row: 3;
+            width: 80px;
+            height: 80px;
+            margin-top: 0;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+        }
+
+        #contentBlockToday .condition-text {
+            grid-column: 1 / 3;
+            grid-row: 7;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            margin-top: 10px;
+        }
+
+        .divider {
+            height: 2px;
+            background: rgba(255, 255, 255, 0.3);
+            margin: 15px 0;
+            border-radius: 2px;
+        }
+
+        #contentBlock3Day {
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
+            border: none !important;
+            grid-column-gap: 0;
+        }
+
+        #contentBlock3Day>div {
+            flex: 1;
+            padding: 10px 5px;
+        }
+
+        #contentBlock3Day .date-string {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        #contentBlock3Day .date-last {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        #contentBlock3Day .icon {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        #contentBlock3Day .temperature {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        form {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 15px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            background: #2a9df4;
+            color: white;
+            padding: 8px 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        input[type="text"] {
+            padding: 8px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            width: 70%;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script>
+        $(function () {
+            let form = $("form").on("submit", search);
+            function search(event) {
+                event.preventDefault();
+                const searchWord = $("#title").val();
+                $.ajax({
+                    url: `http://api.weatherapi.com/v1/forecast.json?key=fbadf9a2624340a9b15113424251007&q=${searchWord}&days=3&aqi=no&alerts=no`,
+                    method: "GET",
+                }).done(res => {
+                    console.log(res);
+                    fillBlock(res);
+                }).fail(res => {
+                    console.log(res)
+
+                })
+            }
+            function fillBlock(searchResult) {
+                $("#contentBlockToday").append(`<div class='location'>${searchResult.location.country}, ${searchResult.location.name}`);
+                $("#contentBlockToday").append(`<div class='datetime'>${searchResult.current.last_updated}`);
+                $("#contentBlockToday").append(`<div class='wind'>${'Wind: ' + searchResult.current.wind_kph + " kph"}`);
+                $("#contentBlockToday").append(`<div class='precip'>${'Precip: ' + searchResult.current.precip_mm + " mm"}`);
+                $("#contentBlockToday").append(`<div class='pressure'>${'Pressure: ' + searchResult.current.pressure_mb + " mb"}`);
+                $("#contentBlockToday").append(`<img class='icon' src="${'https:' + searchResult.current.condition.icon}">`);
+                $("#contentBlockToday").append(`<div class='temperature'>${searchResult.current.temp_c + "°C"} `);
+                $("#contentBlockToday").append(`<div class='condition-text'>${searchResult.current.condition.text}`);
+
+                for (let i = 0; i < 3; i++) {
+                    $("#contentBlock3Day").append(`<div class='date-string block_${i}'>${getWeekDay(searchResult.forecast.forecastday[i].date)}</div>`);
+                    $("#contentBlock3Day").append(`<div class='date-last block_${i}'>${searchResult.forecast.forecastday[i].date}`);
+                    $("#contentBlock3Day").append(`<img class='icon block_${i}' src="${'https:' + searchResult.forecast.forecastday[i].day.condition.icon}">`);
+                    $("#contentBlock3Day").append(`<div class='temperature block_${i}'>${searchResult.forecast.forecastday[i].day.avgtemp_c + "°C"}`);
+                    $(`.block_${i}`).wrapAll(`<div class="day_${i}">`)
+                }
+
+
+
+            }
+            function getWeekDay(dateString) {
+                const date = new Date(dateString + 'T00:00:00Z');
+                const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                const dayIndex = date.getUTCDay();
+                return days[dayIndex];
+            }
+        })
+
+    </script>
+</head>
+
+<main>
+    <section>
+        <h2>Search</h2>
+        <form>
+            <div>
+                <label>
+                    City:
+                    <input type="text" name="title" id="title">
+                </label>
+            </div>
+            <div>
+                <label>
+            </div>
+            <input type="submit" value="Search">
+        </form>
+    </section>
+    <section id="films">
+
+    </section>
+</main>
+<div class="weather-widget">
+    <div id="contentBlockToday"></div>
+    <div class="divider"></div>
+    <div id="contentBlock3Day"></div>
+</div>
+
+</body>
+
+</html>

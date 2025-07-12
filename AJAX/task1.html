@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Film Search</title>
     <style>
         html {
             background-color: rgb(251, 242, 233);
@@ -16,13 +16,18 @@
             grid-column-gap: 10px;
             list-style-type: none;
             text-align: center;
+            padding: 0;
         }
 
         li {
             border: 2px solid gray;
             border-radius: 15px;
-            display: grid;
-            grid-template-columns: repeat(2, 200px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            background-color: white;
+            margin-bottom: 15px;
         }
 
         form {
@@ -30,8 +35,11 @@
             text-align: center;
             border-radius: 15px;
             display: grid;
-            /* justify-items: center; */
             align-items: center;
+            padding: 15px;
+            background-color: white;
+            max-width: 500px;
+            margin: 0 auto;
         }
 
         h2 {
@@ -41,14 +49,67 @@
         button {
             border: 1px solid;
             border-radius: 10px;
+            padding: 5px 15px;
+            background-color: #f0f0f0;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        input[type="submit"] {
+            margin-top: 15px;
+            padding: 8px;
+            cursor: pointer;
+        }
+
+        .detail-container {
+            border: 2px solid gray;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            background-color: white;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .detail-container h2 {
+            text-align: center;
+            margin-top: 0;
+        }
+
+        .detail-info {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 15px;
+        }
+
+        .detail-poster {
+            text-align: center;
+        }
+
+        .detail-poster img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        .detail-text div {
+            margin-bottom: 10px;
+        }
+
+        .detail-label {
+            font-weight: bold;
         }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
         $(function () {
             let form = $("form").on("submit", search);
+            
             function search(event) {
                 event.preventDefault();
+                $("#filmsBlock").empty();
+                $("#filmDetails").empty();
+                
                 const keyword = $("#title").val()
                 const typeM = $("select").val()
                 $.ajax({
@@ -59,49 +120,91 @@
                         'Content-Type': 'application/json',
                     }
                 }).done(res => {
-                    console.log(res.items);
-
                     fillFilmsBlock(res.items)
                 })
             }
+            
             function fillFilmsBlock(searchResult) {
-                $("#filmsBlock").append("<ul class='content'>");
+                let $ul = $("<ul>", { class: "content" });
+                $("#filmsBlock").append($ul);
+                
                 searchResult.forEach(element => {
-                    $("ul").append("<li>");
-                    $('li').last().append(`<div class="block-type">${element.type == "FILM" ? "movie" : "tv series"}</div>`,
-                        `<div class="block-name">${element.nameRu}`,
-                        `<div class="block-year">${element.year}`,
-                        `<img class="block-poster" src="${element.posterUrl}" width=120px height=200px> `,
-                        `<button>Details</button>`).fadeIn(3000);
-                    $("li").last().append("<div>");
-                    $("div").last().append(`<div>${element.nameRu}`)
-                    $("button").last().on("click", () => {
-                        console.log(element.nameRu) //Дописать код здесь!
-                        searchDirector(element.kinopoiskId)
-                    })
-
+                    const name = element.nameRu || element.nameOriginal || "No name";
+                    const $li = $("<li>");
+                    
+                    $li.append(
+                        `<div class="block-type">${element.type === "FILM" ? "Movie" : "TV Series"}</div>`,
+                        `<div class="block-name">${name}</div>`,
+                        `<div class="block-year">${element.year || "Unknown year"}</div>`,
+                        `<img class="block-poster" src="${element.posterUrl}" width="120" height="180">`,
+                        `<button>Details</button>`
+                    );
+                    
+                    $ul.append($li);
+                    
+                    $li.find("button").on("click", () => {
+                        showFilmDetails(element.kinopoiskId, name);
+                    });
                 });
-
-
             }
-            function searchDirector(id) {
+            
+            function showFilmDetails(id, name) {
+                $("#filmDetails").html("<p>Loading details...</p>");
+                
                 $.ajax({
-                    url: `https://kinopoiskapiunofficial.tech/api/v1/staff?filmId=${id}`,
+                    url: `https://kinopoiskapiunofficial.tech/api/v2.2/films/${id}`,
                     method: "GET",
                     headers: {
                         'X-API-KEY': 'a9bc41a3-ad51-4841-9a01-310181a896b6',
                         'Content-Type': 'application/json',
                     }
-                }).done(res => {
-                    console.log(res.forEach(e => {
-                        // console.log(e);
-                        e.professionKey == "DIRECTOR" ? console.log(e) : null;
-                    }
-
-                    ));
-                }
-
-                )
+                }).done(function(film) {
+                    $.ajax({
+                        url: `https://kinopoiskapiunofficial.tech/api/v1/staff?filmId=${id}`,
+                        method: "GET",
+                        headers: {
+                            'X-API-KEY': 'a9bc41a3-ad51-4841-9a01-310181a896b6',
+                            'Content-Type': 'application/json',
+                        }
+                    }).done(function(staff) {
+                        renderFilmDetails(film, staff);
+                    });
+                });
+            }
+            
+            function renderFilmDetails(film, staff) {
+                const name = film.nameRu || film.nameOriginal || "No name";
+                const year = film.year || "Unknown";
+                const genres = film.genres ? film.genres.map(g => g.genre).join(", ") : "Unknown";
+                const countries = film.countries ? film.countries.map(c => c.country).join(", ") : "Unknown";
+                const description = film.description || "No description available";
+                const posterUrl = film.posterUrl;
+                
+                const directors = staff.filter(p => p.professionKey === "DIRECTOR").map(d => d.nameRu).join(", ") || "Unknown";
+                const writers = staff.filter(p => p.professionKey === "WRITER").map(w => w.nameRu).join(", ") || "Unknown";
+                const actors = staff.filter(p => p.professionKey === "ACTOR").slice(0, 5).map(a => a.nameRu).join(", ") || "Unknown";
+                
+                const html = `
+                <div class="detail-container">
+                    <h2>${name}</h2>
+                    <div class="detail-info">
+                        <div class="detail-poster">
+                            <img src="${posterUrl}" alt="${name} poster">
+                        </div>
+                        <div class="detail-text">
+                            <div><span class="detail-label">Year:</span> ${year}</div>
+                            <div><span class="detail-label">Genres:</span> ${genres}</div>
+                            <div><span class="detail-label">Countries:</span> ${countries}</div>
+                            <div><span class="detail-label">Director:</span> ${directors}</div>
+                            <div><span class="detail-label">Writers:</span> ${writers}</div>
+                            <div><span class="detail-label">Actors:</span> ${actors}</div>
+                            <div><span class="detail-label">Description:</span> ${description}</div>
+                        </div>
+                    </div>
+                </div>
+                `;
+                
+                $("#filmDetails").html(html);
             }
         })
     </script>
@@ -115,7 +218,7 @@
                 <div>
                     <label>
                         Title:
-                        <input type="text" name="title" id="title">
+                        <input type="text" name="title" id="title" required>
                     </label>
                 </div>
                 <div>
@@ -130,11 +233,9 @@
                 <input type="submit" value="Search">
             </form>
         </section>
-        <section id="films">
-
-        </section>
+        <section id="filmsBlock"></section>
+        <section id="filmDetails"></section>
     </main>
-    <div id="filmsBlock"></div>
 </body>
 
 </html>

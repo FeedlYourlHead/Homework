@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html {
+            background-color: rgb(251, 242, 233);
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: repeat(3, 32%);
+            grid-column-gap: 10px;
+            list-style-type: none;
+            text-align: center;
+        }
+
+        li {
+            border: 2px solid gray;
+            border-radius: 15px;
+            display: grid;
+            grid-template-columns: repeat(2, 200px);
+        }
+
+        form {
+            border: 2px solid gray;
+            text-align: center;
+            border-radius: 15px;
+            display: grid;
+            /* justify-items: center; */
+            align-items: center;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        button {
+            border: 1px solid;
+            border-radius: 10px;
+        }
+        details {
+            display: none;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            let form = $("form").on("submit", search);
+            function search(event) {
+                event.preventDefault();
+                const keyword = $("#title").val()
+                const typeM = $("select").val()
+                $.ajax({
+                    url: `https://kinopoiskapiunofficial.tech/api/v2.2/films?order=RATING&type=${typeM}&ratingFrom=0&ratingTo=10&yearFrom=1000&yearTo=3000&keyword=${keyword}&page=1`,
+                    method: "GET",
+                    headers: {
+                        'X-API-KEY': 'a9bc41a3-ad51-4841-9a01-310181a896b6',
+                        'Content-Type': 'application/json',
+                    }
+                }).done(res => {
+                    console.log(res.items);
+
+                    fillFilmsBlock(res.items)
+                })
+            }
+            function fillFilmsBlock(searchResult) {
+                $("#filmsBlock").append("<ul class='content'>");
+                searchResult.forEach(element => {
+                    $("ul").append("<li>");
+                    $('li').last().append(`<div class="block-type">${element.type == "FILM" ? "movie" : "tv series"}</div>`,
+                        `<div class="block-name">${element.nameRu}`,
+                        `<div class="block-year">${element.year}`,
+                        `<img class="block-poster" src="${element.posterUrl}" width=120px height=200px> `,
+                        `<button>Details</button>`).fadeIn(3000);
+                    $("li").last().append("<div>");
+                    $("div").last().append(`<div>
+                        <details>
+                            ${element.nameRu}`)
+                    $("button").last().on("click", () => {
+                        // console.log(element.nameRu) //Дописать код здесь!
+                        searchDirector(element.kinopoiskId)
+                    })
+
+                });
+
+
+            }
+            function searchDirector(id) {
+                $.ajax({
+                    url: `https://kinopoiskapiunofficial.tech/api/v1/staff?filmId=${id}`,
+                    method: "GET",
+                    headers: {
+                        'X-API-KEY': 'a9bc41a3-ad51-4841-9a01-310181a896b6',
+                        'Content-Type': 'application/json',
+                    }
+                }).done(res => {
+                    console.log(res.forEach(e => {
+                        // console.log(e);
+                        let director;
+                        e.professionKey == "DIRECTOR" ? director = e : null;
+                        // Название
+                        // Дата релиза
+                        // Жанр
+                        // Страна
+                        // Режиссер
+                        // Сценарист
+                        // Актеры
+                        // Награды
+                    }
+
+                    ));
+                }
+
+                )
+            }
+        })
+    </script>
+</head>
+
+<body>
+    <main>
+        <section>
+            <h2>Search</h2>
+            <form>
+                <div>
+                    <label>
+                        Title:
+                        <input type="text" name="title" id="title">
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        Type:
+                        <select name="type" id="type">
+                            <option value="FILM">Movie</option>
+                            <option value="TV_SERIES">TV series</option>
+                        </select>
+                    </label>
+                </div>
+                <input type="submit" value="Search">
+            </form>
+        </section>
+        <section id="films">
+
+        </section>
+    </main>
+    <div id="filmsBlock"></div>
+</body>
+
+</html>
